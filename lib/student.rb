@@ -37,6 +37,13 @@ class Student
     SELECT * FROM students
     WHERE grade = 10
     SQL
+    DB[:conn].execute(sql).map{
+      |row|
+      i = 0
+      while i < num
+        new_from_db(row)
+        i += 1
+    }
 
   def self.all
     sql = <<-SQL
