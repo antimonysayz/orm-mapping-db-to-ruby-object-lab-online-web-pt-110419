@@ -37,7 +37,11 @@ class Student
     SELECT * FROM students
     LIMIT ?
     SQL
-    DB[:conn].execute(sql, num)
+    DB[:conn].execute(sql, num).map{
+      |row|
+      new_from_db(row)
+    }
+
   end
 
   def self.all
