@@ -59,10 +59,8 @@ class Student
     sql = <<-SQL
     SELECT * FROM students
     SQL
-    DB[:conn].execute(sql).map{
-      |row|
-      new_from_db(row)
-    }
+    first = DB[:conn].execute(sql)[0]
+    new_from_db(first)
   end
 
   def self.find_by_name(name)
