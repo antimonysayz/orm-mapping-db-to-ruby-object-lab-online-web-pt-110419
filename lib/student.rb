@@ -45,6 +45,7 @@ class Student
         i += 1
       end
     }
+  end
 
   def self.all
     sql = <<-SQL
