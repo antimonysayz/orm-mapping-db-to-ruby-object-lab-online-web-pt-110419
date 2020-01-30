@@ -41,7 +41,6 @@ class Student
       |row|
       new_from_db(row)
     }
-
   end
 
   def self.all
