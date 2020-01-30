@@ -43,24 +43,24 @@ class Student
     }
   end
 
-  def self.first_student_in_grade_10
+  def first_student_in_grade_10
     sql = <<-SQL
     SELECT * FROM students
     WHERE grade = 10
     LIMIT 1
     SQL
-    DB[:conn].execute(sql).map{
-      |row|
-      new_from_db(row)
-    }
+    first = DB[:conn].execute(sql)[0]
+    new_from_db(first)
   end
 
   def self.all
     sql = <<-SQL
     SELECT * FROM students
     SQL
-    first = DB[:conn].execute(sql)[0]
-    new_from_db(first)
+    DB[:conn].execute(sql).map{
+      |row|
+      new_from_db(row)
+    }
   end
 
   def self.find_by_name(name)
