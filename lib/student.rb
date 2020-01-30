@@ -43,6 +43,7 @@ class Student
       while i < num
         new_from_db(row)
         i += 1
+      end
     }
 
   def self.all
