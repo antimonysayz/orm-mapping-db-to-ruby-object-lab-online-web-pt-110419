@@ -35,16 +35,9 @@ class Student
   def self.first_X_students_in_grade_10(num)
     sql = <<-SQL
     SELECT * FROM students
-    WHERE grade = 10
+    LIMIT ?
     SQL
-    DB[:conn].execute(sql).map{
-      |row|
-      i = 0
-      while i < num
-        new_from_db(row)
-        i += 1
-      end
-    }
+    DB[:conn].execute(sql, num)
   end
 
   def self.all
