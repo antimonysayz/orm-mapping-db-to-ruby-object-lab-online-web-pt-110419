@@ -9,6 +9,19 @@ class Student
     student
   end
 
+  def self.all_students_in_grade_9
+    sql = <<-SQL
+    SELECT * FROM students
+    WHERE grade = 9
+    SQL
+
+    DB[:conn].execute(sql).map{
+      |row|
+      new_from_db(row)
+    }
+
+  end
+
   def self.all
     # retrieve all the rows from the "Students" database
     # remember each row should be a new instance of the Student class
